@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="pkg_">
+
+    <!-- Корпус -->
+    <link name="base_link">
+        <inertial>
+            <mass value="0.117314" />
+            <origin xyz="-0.00106256 -0.0400922 -0.0185141" rpy="0 -0 0" />
+            <inertia ixx="6.73673e-05" ixy="1.88957e-07" ixz="-9.68474e-08" iyy="2.82764e-05" iyz="4.44975e-06" izz="8.93235e-05" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 -0 0" />
+            <geometry>
+                <mesh filename="../meshes/base_link.stl" scale="10 10 10" />
+            </geometry>
+            <material name="chassis_material"><color rgba="0.564706 0.564706 0.564706 1" /></material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 -0 0" />
+            <geometry>
+                <mesh filename="../meshes/base_link.stl" scale="10 10 10" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Переднее правое колесо -->
+    <link name="wheel_front_right">
+        <inertial>
+            <!-- ИСПРАВЛЕНО: Масса увеличена до 0.5 кг, чтобы физика привода не ломалась -->
+            <mass value="0.5" />
+            <origin xyz="0.04 -1.9753e-18 -4.7812e-18" rpy="0 -0 0" />
+            <inertia ixx="3.0132e-04" ixy="0" ixz="0" iyy="1.74288e-04" iyz="0" izz="1.74288e-04" />
+        </inertial>
+        <visual>
+            <origin xyz="0.04 0 -7.34788e-18" rpy="0 -0 0" />
+            <geometry>
+                <mesh filename="../meshes/wheel.stl" scale="10 10 10" />
+            </geometry>
+            <material name="wheel_material"><color rgba="0.141176 0.141176 0.141176 1" /></material>
+        </visual>
+        <collision>
+            <origin xyz="0.04 0 -7.34788e-18" rpy="0 -0 0" />
+            <geometry>
+                <mesh filename="../meshes/wheel.stl" scale="10 10 10" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Заднее правое колесо -->
+    <link name="wheel_back_right">
+        <inertial>
+            <!-- ИСПРАВЛЕНО: Масса увеличена до 0.5 кг -->
+            <mass value="0.5" />
+            <origin xyz="0.04 4.05114e-17 -5.85856e-18" rpy="-0.0266103 6.50348e-20 4.88766e-18" />
+            <inertia ixx="3.0132e-04" ixy="0" ixz="0" iyy="1.74288e-04" iyz="0" izz="1.74288e-04" />
+        </inertial>
+        <visual>
+            <origin xyz="0.04 4.24177e-17 -8.47689e-18" rpy="-0.0266103 6.50348e-20 4.88766e-18" />
+            <geometry>
+                <mesh filename="../meshes/wheel.stl" scale="10 10 10" />
+            </geometry>
+            <material name="wheel_material" />
+        </visual>
+        <collision>
+            <origin xyz="0.04 4.24177e-17 -8.47689e-18" rpy="-0.0266103 6.50348e-20 4.88766e-18" />
+            <geometry>
+                <mesh filename="../meshes/wheel.stl" scale="10 10 10" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Переднее левое колесо -->
+    <link name="wheel_front_left">
+        <inertial>
+            <!-- ИСПРАВЛЕНО: Масса увеличена до 0.5 кг -->
+            <mass value="0.5" />
+            <origin xyz="-0.04 4.04574e-17 9.91456e-18" rpy="0 -0 0" />
+            <inertia ixx="3.0132e-04" ixy="0" ixz="0" iyy="1.74288e-04" iyz="0" izz="1.74288e-04" />
+        </inertial>
+        <visual>
+            <origin xyz="-0.04 4.24327e-17 7.34788e-18" rpy="0 -0 0" />
+            <geometry>
+                <mesh filename="../meshes/wheel.stl" scale="10 10 10" />
+            </geometry>
+            <material name="wheel_material" />
+        </visual>
+        <collision>
+            <origin xyz="-0.04 4.24327e-17 7.34788e-18" rpy="0 -0 0" />
+            <geometry>
+                <mesh filename="../meshes/wheel.stl" scale="10 10 10" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Заднее левое колесо -->
+    <link name="wheel_back_left">
+        <inertial>
+            <!-- ИСПРАВЛЕНО: Масса увеличена до 0.5 кг -->
+            <mass value="0.5" />
+            <origin xyz="-0.04 -1.9753e-18 9.91456e-18" rpy="-3.27226e-08 9.83487e-32 6.01105e-24" />
+            <inertia ixx="3.0132e-04" ixy="0" ixz="0" iyy="1.74288e-04" iyz="0" izz="1.74288e-04" />
+        </inertial>
+        <visual>
+            <origin xyz="-0.04 -2.86986e-41 7.34788e-18" rpy="-3.27226e-08 9.83487e-32 6.01105e-24" />
+            <geometry>
+                <mesh filename="../meshes/wheel.stl" scale="10 10 10" />
+            </geometry>
+            <material name="wheel_material" />
+        </visual>
+        <collision>
+            <origin xyz="-0.04 -2.86986e-41 7.34788e-18" rpy="-3.27226e-08 9.83487e-32 6.01105e-24" />
+            <geometry>
+                <mesh filename="../meshes/wheel.stl" scale="10 10 10" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Джоинты -->
+    <joint name="wheel_back_left_joint" type="continuous">
+        <origin xyz="-0.2 0.19 0.0762247" rpy="-4.06793e-16 -1.00722e-16 2.16028e-16" />
+        <axis xyz="1 0 0" />
+        <parent link="base_link" />
+        <child link="wheel_back_left" />
+    </joint>
+
+    <joint name="wheel_back_right_joint" type="continuous">
+        <origin xyz="0.2 0.19 0.0762247" rpy="9.19403e-17 -2.12964e-16 -9.16987e-16" />
+        <axis xyz="-1 0 0" />
+        <parent link="base_link" />
+        <child link="wheel_back_right" />
+    </joint>
+
+    <joint name="wheel_front_left_joint" type="continuous">
+        <origin xyz="-0.2 -0.25 0.0762247" rpy="-9.72833e-15 -2.76173e-16 2.41398e-16" />
+        <axis xyz="1 0 0" />
+        <parent link="base_link" />
+        <child link="wheel_front_left" />
+    </joint>
+
+    <joint name="wheel_front_right_joint" type="continuous">
+        <origin xyz="0.2 -0.25 0.0762247" rpy="-2.72317e-14 1.99412e-16 -1.07397e-15" />
+        <axis xyz="-1 0 0" />
+        <parent link="base_link" />
+        <child link="wheel_front_right" />
+    </joint>
+
+    <!-- ИСПРАВЛЕНО: Специфичный для чистого Gazebo тег привязки плагина к роботу -->
+    <gazebo reference="base_link">
+        <plugin filename="gz-sim-skid-steer-drive-system" name="gz::sim::systems::SkidSteerDrive">
+            <left_front_joint>wheel_front_left_joint</left_front_joint>
+            <right_front_joint>wheel_front_right_joint</right_front_right_joint>
+            <left_rear_joint>wheel_back_left_joint</left_rear_joint>
+            <right_rear_joint>wheel_back_right_joint</right_rear_joint>
+            <wheel_separation>0.4</wheel_separation>
+            <wheel_radius>0.0762</wheel_radius>
+            <topic>/cmd_vel</topic>
+            <odom_topic>/odom</odom_topic>
+            <frame_id>odom</frame_id>
+            <child_frame_id>base_link</child_frame_id>
+        </plugin>
+    </gazebo>
+
+</robot>
+
